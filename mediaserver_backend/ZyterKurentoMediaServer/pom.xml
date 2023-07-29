@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Maven coordinates -->
+	<parent>
+		<groupId>org.kurento</groupId>
+		<artifactId>kurento-parent-pom</artifactId>
+		<version>6.14.1-SNAPSHOT</version>
+	</parent>
+	<groupId>com.zyter.mediaserver</groupId>
+	<artifactId>ZyterKurentoMediaServer</artifactId>
+	<packaging>pom</packaging>
+
+	<!-- Project-level information -->
+	<name>Zyter Kurento Media Server</name>
+	
+	<modules>
+		<module>ZyterGroupCall</module>
+		<module>ZyterMediaServerWeb</module>
+		<module>ZyterOne2OneCall</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<!--
+				Goal: spring-boot:run
+				Allows running the project from Maven.
+				Use this command: `mvn clean spring-boot:run`.
+
+				Goal: spring-boot:repackage
+				Runs automatically during the Maven's 'package' goal.
+				The parameter 'executable=true' generates an executable JAR during
+				the 'package' phase. The original package is still generated as
+				"<Name>.jar", and the executable one is generated as "<Name>-exec.jar".
+				It also supports the service actions start/stop/status, so it
+				can be linked into "/etc/init.d/" to be used as system service.
+
+				Ref:
+				- https://stackoverflow.com/questions/21503883/spring-boot-application-as-a-service/30497095#30497095
+				- https://docs.spring.io/spring-boot/docs/current/reference/html/deployment.html#deployment-service
+				- https://docs.spring.io/spring-boot/docs/current/maven-plugin/reference/html/
+				-->
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<!-- <classifier>exec</classifier>
+						<executable>true</executable>
+						<layout>ZIP</layout> -->
+						<mainClass>${start-class}</mainClass>
+					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+</project>

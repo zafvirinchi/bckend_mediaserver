@@ -1,0 +1,8 @@
+<Context>
+    <Resources>
+        <PostResources className="org.apache.catalina.webresources.DirResourceSet"
+                       base="/opt/zyter/apache-tomcat-8.5.15/lib/ZyterMediaServerWeb" webAppMount="/WEB-INF/lib" />
+        <!-- <PostResources className="org.apache.catalina.webresources.DirResourceSet"
+                       base="/usr/shared/classes" webAppMount="/WEB-INF/classes" /> -->
+    </Resources>
+</Context>
